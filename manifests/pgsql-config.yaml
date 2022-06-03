@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: unethicalite-backend
+data:
+  POSTGRES_DB: unethicalite
+  POSTGRES_USER: unethicalite
+  POSTGRES_PASSWORD: unethicalite

@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unethicalite-backend
+  labels:
+    app: unethicalite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unethicalite
+  template:
+    metadata:
+      labels:
+        app: unethicalite
+    spec:
+      containers:
+        - name: unethicalite-backend
+          image: unethicalite/unethicalite-backend:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: STORAGE_ACCESS_KEY
+            - name: STORAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: STORAGE_SECRET_KEY
+            - name: STORAGE_END_POINT
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: STORAGE_END_POINT
+            - name: STORAGE_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: STORAGE_REGION
+            - name: STORAGE_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: STORAGE_BUCKET_NAME
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: DB_PORT
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: DB_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: DB_NAME
+            - name: BOT_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: unethicalite-secrets
+                  key: BOT_AUTH_TOKEN
+
+      imagePullSecrets:
+        - name: mdocker-hub-secrets

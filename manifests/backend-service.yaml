@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: unethicalite-backend
+  annotations:
+    kubernetes.digitalocean.com/load-balancer-id: 47ee147d-2bf4-4bbc-a25c-22538fac0313
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "30801"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/actuator/health"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "3"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "5"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-unhealthy-threshold: "3"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-healthy-threshold: "5"
+    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
+  labels:
+    app: unethicalite
+spec:
+  selector:
+    app: unethicalite
+  type: LoadBalancer
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 8080
+      nodePort: 30801
+      protocol: TCP
