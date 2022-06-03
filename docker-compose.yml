@@ -2,6 +2,8 @@ version: '3'
 
 services:
   unethicalite-backend:
+    container_name: unethicalite-backend
+    hostname: unethicalite-backend
     image: unethicalite/unethicalite-backend:latest
     ports:
       - "8080:8080"
