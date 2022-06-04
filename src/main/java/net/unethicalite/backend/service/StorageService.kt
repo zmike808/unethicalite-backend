@@ -1,6 +1,7 @@
 package net.unethicalite.backend.service
 
 import net.unethicalite.dto.exception.BackendException
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
@@ -10,9 +11,10 @@ import org.springframework.util.LinkedMultiValueMap
 import org.springframework.web.client.RestTemplate
 
 @Service
-class StorageService {
+class StorageService(
+    @Value("\${backend.url}") private val baseUrl: String
+) {
     private val restTemplate = RestTemplate()
-    private val baseUrl = "http://localhost:8081"
 
     fun getFileStream(fileName: String): ByteArray {
         return restTemplate.execute(
