@@ -4,16 +4,19 @@ import net.unethicalite.backend.service.RegionService
 import net.unethicalite.dto.regions.TileFlagDto
 import org.springframework.core.io.InputStreamResource
 import org.springframework.http.MediaType
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import java.io.ByteArrayInputStream
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/regions")
+@Validated
 class RegionController(
     private val regionService: RegionService,
 ) {
     @PostMapping("/{version}")
-    fun saveAll(@PathVariable version: Int, @RequestBody tiles: List<TileFlagDto>) {
+    fun saveAll(@PathVariable version: Int, @Valid @RequestBody tiles: List<TileFlagDto>) {
         regionService.save(tiles)
     }
 

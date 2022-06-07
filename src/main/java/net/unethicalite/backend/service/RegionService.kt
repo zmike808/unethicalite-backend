@@ -18,10 +18,10 @@ class RegionService(
 
     fun save(tiles: List<TileFlagDto>) {
         tiles.forEach { tileFlag ->
-            val region = tileFlag.region ?: return@forEach
-            val x = tileFlag.x ?: return@forEach
-            val y = tileFlag.y ?: return@forEach
-            val z = tileFlag.z ?: return@forEach
+            val region = tileFlag.region
+            val x = tileFlag.x
+            val y = tileFlag.y
+            val z = tileFlag.z
 
             if (collisionMap.regions[region] == null) {
                 collisionMap.createRegion(region)
