@@ -36,7 +36,7 @@ dependencies {
 
     implementation("org.mapstruct:mapstruct:1.4.2.Final")
     kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
-    implementation("net.unethicalite:unethicalite-dto:0.0.7")
+    implementation("net.unethicalite:unethicalite-dto:0.0.8")
 }
 
 tasks.withType<KotlinCompile> {

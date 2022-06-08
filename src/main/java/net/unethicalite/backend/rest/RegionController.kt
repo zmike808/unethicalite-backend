@@ -15,8 +15,14 @@ import javax.validation.Valid
 class RegionController(
     private val regionService: RegionService,
 ) {
+    @Deprecated(message = "Will be removed as db version check is no longer needed")
     @PostMapping("/{version}")
     fun saveAll(@PathVariable version: Int, @Valid @RequestBody tiles: List<TileFlagDto>) {
+        regionService.save(tiles)
+    }
+
+    @PostMapping
+    fun saveAll(@Valid @RequestBody tiles: List<TileFlagDto>) {
         regionService.save(tiles)
     }
 
