@@ -15,5 +15,6 @@ data class TransportLink(
     val action: String,
     val objName: String,
     val objId: Int,
-    val enabled: Boolean,
+    val requirementsJson: String = "{}",
+    val enabled: Boolean = false,
 )
