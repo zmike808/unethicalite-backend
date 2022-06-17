@@ -18,9 +18,10 @@ class TransportService(
                     it.source.toString(),
                     it.destination.toString(),
                     it.action,
-                    it.objectId,
                     it.objectName,
-                    objectMapper.writeValueAsString(it.requirements)
+                    it.objectId,
+                    it.description,
+                    objectMapper.writeValueAsString(it.requirement)
                 )
             })
 

@@ -34,9 +34,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     runtimeOnly("org.postgresql:postgresql")
 
-    implementation("org.mapstruct:mapstruct:1.4.2.Final")
-    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
-    implementation("net.unethicalite:unethicalite-dto:0.0.9")
+    implementation("net.unethicalite:unethicalite-dto:0.0.10")
 }
 
 tasks.withType<KotlinCompile> {

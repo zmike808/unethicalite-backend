@@ -24,9 +24,10 @@ class TransportController(
                 WorldPointDto(this[0], this[1], this[2])
             },
             it.action,
-            it.objName,
             it.objId,
-            objectMapper.readValue(it.requirementsJson) //todo: i dont think this works but will see
+            it.objName,
+            it.description,
+            objectMapper.readValue(it.requirementsJson)
         )
     }
 
