@@ -1,25 +1,28 @@
 package net.unethicalite.backend.service
 
-import net.unethicalite.backend.mappers.TransportLinkMapper
+import com.fasterxml.jackson.databind.ObjectMapper
 import net.unethicalite.backend.repository.TransportLinkRepository
+import net.unethicalite.backend.repository.entity.TransportLink
 import net.unethicalite.dto.regions.TransportLinkDto
 import org.springframework.stereotype.Service
 
 @Service
 class TransportService(
     private val transportLinkRepository: TransportLinkRepository,
-    private val transportLinkMapper: TransportLinkMapper
+    private val objectMapper: ObjectMapper
 ) {
     fun saveAll(transports: List<TransportLinkDto>) = transportLinkRepository
-        .saveAll(transports
-            .filter {
-                it.source.split(" ").size == 3
-                        && it.destination.split(" ").size == 3
-                        && it.action.isNotBlank()
-                        && it.objName.isNotBlank()
-                        && it.objId > 0
-            }.map {
-                transportLinkMapper.toModel(it)
+        .saveAll(transports.map {
+                TransportLink(
+                    null,
+                    it.source.toString(),
+                    it.destination.toString(),
+                    it.action,
+                    it.objectName,
+                    it.objectId,
+                    it.description,
+                    objectMapper.writeValueAsString(it.requirement)
+                )
             })
 
     fun getAll() = transportLinkRepository
