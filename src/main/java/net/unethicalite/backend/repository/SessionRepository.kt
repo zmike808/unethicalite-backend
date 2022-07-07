@@ -12,14 +12,15 @@ class SessionRepository(
 ) {
     private val sessions = mutableMapOf<String, Session>()
 
-    fun findById(uuid: String) = sessions[uuid]
+    fun findById(host: String) = sessions[host]
 
-    fun newSession(mode: String) = UUID.randomUUID().run {
-        sessions[toString()] = Session(this, mode)
+    fun newSession(host: String, mode: String) = UUID.randomUUID().run {
+        println("New user connected in $mode mode")
+        sessions[host] = Session(this, mode)
         toString()
     }
 
-    fun delete(uuid: String) = sessions.remove(uuid)
+    fun delete(host: String) = sessions.remove(host)
 
     fun count() = sessions.size
 

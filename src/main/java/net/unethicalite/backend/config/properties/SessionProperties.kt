@@ -6,5 +6,6 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConfigurationProperties(prefix = "sessions")
 @ConstructorBinding
 data class SessionProperties(
-    val maxAge: Long
+    val maxAge: Long,
+    val cron: String
 )

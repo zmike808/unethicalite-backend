@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 class SessionScheduler(
     private val sessionRepository: SessionRepository
 ) {
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "\${sessions.cron}")
     private fun checkAndClear() {
         sessionRepository.removeExpired()
     }
